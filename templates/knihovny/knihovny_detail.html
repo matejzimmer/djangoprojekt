@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Detail knihovny: {{ knihovna.nazev }}{% endblock %}
+
+{% block content %}
+    <h2 class="display-4 text-center">{{ knihovna.nazev }}</h2>
+    <div class="row bg-dark p-3 mb-2">
+        <div class="col-md-6 text-light">
+            <p><strong>Adresa:</strong> {{ knihovna.adresa }}</p>
+            <p><strong>Telefon:</strong> {{ knihovna.telefon }}</p>
+            <p><strong>Email:</strong> {{ knihovna.email }}</p>
+        </div>
+        <div class="col-md-6">
+            <h4 class="text-info">Knihovníci</h4>
+            <ul class="list-unstyled">
+                {% for knihovnik in knihovna.knihovnik_set.all %}
+                    <li>{{ knihovnik }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

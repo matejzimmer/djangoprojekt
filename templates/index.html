@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-8 mt-3 mb-3">
+            <h2 class="bg-info text-light text-center text-uppercase p-3">Přehled čtenářů</h2>
+            {% for ctenar in ctenari %}
+            <div class="row mb-3">
+                <div class="col-lg-9">
+                    <h3><a href="#">{{ ctenar.uzivatelske_jmeno }}</a></h3>
+                    <p>Email: {{ ctenar.email }}</p>
+                    <p>Datum registrace: {{ ctenar.datum_registrace }}</p>
+                    {% if ctenar.aktivni %}
+                        <p>Status: Aktivní</p>
+                    {% else %}
+                        <p>Status: Neaktivní</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-lg-4 bg-light mt-3 mb-3">
+            <h2 class="bg-secondary text-light text-center p-3">Přehled knihoven</h2>
+            <ul class="list-group">
+            {% for knihovna in knihovny %}
+                <li class="list-group-item">
+                    <h4><a href="#">{{ knihovna.nazev }}</a></h4>
+                    <p>Adresa: {{ knihovna.adresa }}</p>
+                    <p>Telefon: {{ knihovna.telefon }}</p>
+                    <p>Email: {{ knihovna.email }}</p>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

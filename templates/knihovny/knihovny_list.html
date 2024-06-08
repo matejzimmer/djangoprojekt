@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Seznam knihoven{% endblock %}
+
+{% block content %}
+  <h2 class="display-4 text-center">Seznam knihoven</h2>
+  <div class="row mb-2">
+    <div class="col-12">
+      <table class="table table-responsive-lg table-striped table-hover">
+        <thead class="bg-secondary">
+          <tr>
+              <th>Název knihovny</th>
+              <th>Adresa</th>
+              <th>Telefon</th>
+              <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for knihovna in knihovny %}
+          <tr>
+              <td><strong><a href="{% url 'knihovna_detail' knihovna.pk %}" class="text-info">{{ knihovna.nazev }}</a></strong></td>
+              <td>{{ knihovna.adresa }}</td>
+              <td>{{ knihovna.telefon }}</td>
+              <td>{{ knihovna.email }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

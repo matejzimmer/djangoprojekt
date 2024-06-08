@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Seznam čtenářů{% endblock %}
+
+{% block content %}
+  <h2 class="display-4 text-center">Seznam čtenářů</h2>
+  <div class="row mb-2">
+    <div class="col-12">
+      {% if ctenari %}
+        <table class="table table-responsive-lg table-striped table-hover">
+          <thead class="bg-secondary">
+            <tr>
+                <th>Uživatelské jméno</th>
+                <th>Email</th>
+                <th>Datum registrace</th>
+                <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for ctenar in ctenari %}
+            <tr>
+                <td><strong><a href="{% url 'ctenari_detail' ctenar.pk %}" class="text-info">{{ ctenar.uzivatelske_jmeno }}</a></strong></td>
+                <td>{{ ctenar.email }}</td>
+                <td class="text-right">{{ ctenar.datum_registrace }}</td>
+                <td class="text-right">
+                    {% if ctenar.aktivni %}
+                        Aktivní
+                    {% else %}
+                        Neaktivní
+                    {% endif %}
+                </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p class="text-center">Momentálně nejsou k dispozici žádní čtenáři.</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

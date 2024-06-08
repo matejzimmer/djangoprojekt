@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Profil čtenáře: {{ ctenar.uzivatelske_jmeno }}{% endblock %}
+
+{% block content %}
+    <h2 class="display-4 text-center">Profil čtenáře: {{ ctenar.uzivatelske_jmeno }}</h2>
+    <div class="row bg-dark p-3 mb-2">
+        <div class="col-md-6 text-light">
+            <p><strong>Uživatelské jméno:</strong> {{ ctenar.uzivatelske_jmeno }}</p>
+            <p><strong>Email:</strong> {{ ctenar.email }}</p>
+            <p><strong>Datum registrace:</strong> {{ ctenar.datum_registrace }}</p>
+            <p><strong>Aktivní účet:</strong> {% if ctenar.aktivni %}Ano{% else %}Ne{% endif %}</p>
+        </div>
+        <div class="col-md-6">
+            <h4 class="text-info">Půjčky</h4>
+            <ul class="list-unstyled">
+                {% for pujcka in ctenar.pujcka_set.all %}
+                    <li>{{ pujcka }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
