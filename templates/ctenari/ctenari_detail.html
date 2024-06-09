@@ -6,6 +6,7 @@
     <h2 class="display-4 text-center">Profil čtenáře: {{ ctenar.uzivatelske_jmeno }}</h2>
     <div class="row bg-dark p-3 mb-2">
         <div class="col-md-6 text-light">
+            <h4 class="text-info">Informace o čtenáři:</h4>
             <p><strong>Uživatelské jméno:</strong> {{ ctenar.uzivatelske_jmeno }}</p>
             <p><strong>Email:</strong> {{ ctenar.email }}</p>
             <p><strong>Datum registrace:</strong> {{ ctenar.datum_registrace }}</p>
@@ -13,10 +14,30 @@
         </div>
         <div class="col-md-6">
             <h4 class="text-info">Půjčky</h4>
-            <ul class="list-unstyled">
-                {% for pujcka in ctenar.pujcka_set.all %}
-                    <li>{{ pujcka }}</li>
-                {% endfor %}
+            <ul class="list-unstyled text-light">
+                {% if ctenar.pujcka_set.all %}
+                    {% for pujcka in ctenar.pujcka_set.all %}
+                        <li>
+                            {% if pujcka.datum_vraceni %}
+                                Půjčka vrácena dne: {{ pujcka.datum_vraceni }}
+                            {% else %}
+                                Půjčka nebyla vrácena
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li>Žádná půjčka</li>
+                {% endif %}
+            </ul>
+            <h4 class="text-info">Rezervace</h4>
+            <ul class="list-unstyled text-light">
+                {% if ctenar.rezervace_set.all %}
+                    {% for rezervace in ctenar.rezervace_set.all %}
+                        <li>{{ rezervace }} </li>
+                    {% endfor %}
+                {% else %}
+                    <li>Žádná rezervace</li>
+                {% endif %}
             </ul>
         </div>
     </div>

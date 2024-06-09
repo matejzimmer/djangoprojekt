@@ -7,7 +7,7 @@
             {% for ctenar in ctenari %}
             <div class="row mb-3">
                 <div class="col-lg-9">
-                    <h3><a href="#">{{ ctenar.uzivatelske_jmeno }}</a></h3>
+                    <h3><a href="{% url 'ctenari_detail' ctenar.pk %}">{{ ctenar.uzivatelske_jmeno }}</a></h3>
                     <p>Email: {{ ctenar.email }}</p>
                     <p>Datum registrace: {{ ctenar.datum_registrace }}</p>
                     {% if ctenar.aktivni %}
@@ -24,7 +24,7 @@
             <ul class="list-group">
             {% for knihovna in knihovny %}
                 <li class="list-group-item">
-                    <h4><a href="#">{{ knihovna.nazev }}</a></h4>
+                    <h4><a href="{% url 'knihovna_detail' knihovna.pk %}">{{ knihovna.nazev }}</a></h4>
                     <p>Adresa: {{ knihovna.adresa }}</p>
                     <p>Telefon: {{ knihovna.telefon }}</p>
                     <p>Email: {{ knihovna.email }}</p>
